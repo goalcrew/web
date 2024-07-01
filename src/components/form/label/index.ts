@@ -3,9 +3,13 @@ import Root from './label.svelte';
 import { tv } from 'tailwind-variants';
 import type { Snippet } from 'svelte';
 
-const variants = tv({
-	base: 'text-red-500'
-});
+const variants = tv(
+	{
+		base: 'text-red-500'
+	},
+	// TODO: Make a reusable config
+	{ twMerge: false }
+);
 
 interface Props extends HTMLAttributes<HTMLLabelElement> {
 	id: string;
