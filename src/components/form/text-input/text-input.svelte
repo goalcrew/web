@@ -1,10 +1,29 @@
 <script lang="ts">
-	import { cn } from '$lib';
-
 	import type { TextInputProps } from '.';
 	import { textInputVariants } from '.';
+	import { Label } from '$components/form/label';
 
-	let { id, class: className, ...rest }: TextInputProps = $props();
+	let {
+		id,
+		class: className,
+		variant,
+		color,
+		size,
+		radius,
+		label,
+		...rest
+	}: TextInputProps = $props();
 </script>
 
-<input class={cn(textInputVariants({ className }))} type="text" {id} {...rest} />
+{#if label}
+	<Label id={label.id} {...label.props}>
+		{label.content}
+	</Label>
+{/if}
+
+<input
+	class={textInputVariants({ className, variant, color, size, radius })}
+	type="text"
+	{id}
+	{...rest}
+/>
