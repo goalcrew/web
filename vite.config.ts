@@ -1,16 +1,15 @@
 import { defineConfig } from 'vitest/config';
 
 import { sveltekit } from '@sveltejs/kit/vite';
-import UnoCSS from '@unocss/svelte-scoped/vite';
 
 export default defineConfig({
-	plugins: [
-		sveltekit(),
-		UnoCSS({
-			injectReset: '@unocss/reset/tailwind.css'
-		})
-	],
+	plugins: [sveltekit()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
+	},
+	server: {
+		fs: {
+			allow: ['./master.css.ts']
+		}
 	}
 });

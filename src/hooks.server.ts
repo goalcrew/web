@@ -1,8 +1,9 @@
+import { render } from '@master/css-server';
+import config from '../master.css';
+
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
-	const response = await resolve(event, {
-		transformPageChunk: ({ html }) =>
-			html.replace('%unocss-svelte-scoped.global%', 'unocss_svelte_scoped_global_styles')
+	return await resolve(event, {
+		transformPageChunk: ({ html }) => render(html, config).html
 	});
-	return response;
 }
